@@ -1,6 +1,6 @@
 const config = {
     mongo: {
-		host     : '10.0.1.191',
+		host     : '127.0.0.1',
 		port     : '27017',
 		database : 'dashboard-analytics'
 	},

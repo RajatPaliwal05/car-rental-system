@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 const config = require('../config/config');
-var mongoConfig = config.mongo.host + ':' + config.mongo.port;
+var mongoConfig = config.mongo.host + ':' + config.mongo.port + '/' + config.mongo.database;
 var mongoDB = 'mongodb://' + mongoConfig;
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 

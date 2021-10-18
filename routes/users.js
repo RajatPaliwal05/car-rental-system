@@ -8,7 +8,7 @@ router.post('/', async function (req, res) {
         return;
     }
     try {
-        const result = await user.addUser(req);
+        const result = await user.addUser(req, res);
         res.status(200).send(result);
     } catch (error) {
         console.log('Error while adding the User :::: ' + error.stack);
@@ -22,7 +22,7 @@ router.get('/:userId', async function (req, res) {
         return;
     }
     try {
-        const result = await user.getUser(req);
+        const result = await user.getUser(req, res);
         res.status(200).send(result);
     } catch (error) {
         console.log('Error while adding the User :::: ' + error.stack);
@@ -36,7 +36,7 @@ router.put('/:userId', async function (req, res) {
         return;
     }
     try {
-        const result = await user.updateUser(req);
+        const result = await user.updateUser(req, res);
         res.status(200).send(result);
     } catch (error) {
         console.log('Error while adding the User :::: ' + error.stack);
@@ -50,7 +50,7 @@ router.delete('/:userId', async function (req, res) {
         return;
     }
     try {
-        const result = await user.deleteUser(req);
+        const result = await user.deleteUser(req, res);
         res.status(200).send(result);
     } catch (error) {
         console.log('Error while adding the User :::: ' + error.stack);
@@ -61,7 +61,7 @@ router.delete('/:userId', async function (req, res) {
 router.get('/:userId/bookings', async function (req, res) {
     if (req.params.userId) {
         try {
-            const result = await user.getBookings(req);
+            const result = await user.getBookings(req, res);
             res.status(200).send(result);
         } catch (error) {
             res.status(400).send({ "err": error.message });

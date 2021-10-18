@@ -3,9 +3,9 @@ const router = express.Router();
 const car = require('../services/carServices');
 
 router.post('/', async function (req, res) {
-    if (req.params) {
+    if (req.body) {
         try {
-            const result = await car.addCar(req);
+            const result = await car.addCar(req, res);
             res.status(200).send(result);
         } catch (error) {
             console.log('Error while adding the Car :::: ' + error.stack);
@@ -22,7 +22,7 @@ router.get('/:carId', async function (req, res) {
         return;
     }
     try {
-        const result = await car.getCar(req);
+        const result = await car.getCar(req, res);
         res.status(200).send(result);
     } catch (error) {
         console.log('Error while adding the Car :::: ' + error.stack);
@@ -36,7 +36,7 @@ router.put('/:carId', async function (req, res) {
         return;
     }
     try {
-        const result = await car.updateCar(req);
+        const result = await car.updateCar(req, res);
         res.status(200).send(result);
     } catch (error) {
         console.log('Error while adding the Car :::: ' + error.stack);
@@ -50,7 +50,7 @@ router.delete('/:carId', async function (req, res) {
         return;
     }
     try {
-        const result = await car.deleteCar(req);
+        const result = await car.deleteCar(req, res);
         res.status(200).send(result);
     } catch (error) {
         console.log('Error while adding the Car :::: ' + error.stack);
@@ -61,7 +61,7 @@ router.delete('/:carId', async function (req, res) {
 router.get('/search-cars', async function (req, res) {
     if (req.query.toDateTime && req.query.fromDateTime) {
         try {
-            const result = await car.getAllCars(req);
+            const result = await car.getAllCars(req, res);
             res.status(200).send(result);
         } catch (error) {
             res.status(400).send({ "err": error.message });
@@ -74,7 +74,7 @@ router.get('/search-cars', async function (req, res) {
 router.get('/calculate-price', async function (req, res) {
     if (req.query.carId && req.query.toDateTime && req.query.fromDateTime) {
         try {
-            const result = await car.calculatePrice(req);
+            const result = await car.calculatePrice(req, res);
             res.status(200).send(result);
         } catch (error) {
             res.status(400).send({ "err": error.message });
@@ -87,7 +87,7 @@ router.get('/calculate-price', async function (req, res) {
 router.get('/:carId/bookings', async function (req, res) {
     if (req.params.carId) {
         try {
-            const result = await car.getAllBookings(req);
+            const result = await car.getAllBookings(req, res);
             res.status(200).send(result);
         } catch (error) {
             res.status(400).send({ "err": error.message });
@@ -100,7 +100,7 @@ router.get('/:carId/bookings', async function (req, res) {
 router.post('/:carId/book', async function (req, res) {
     if (req.params.carId && req.query.durations) {
         try {
-            const result = await car.bookCar(req);
+            const result = await car.bookCar(req, res);
             res.status(200).send(result);
         } catch (error) {
             res.status(400).send({ "err": error.message });
